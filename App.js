@@ -1,4 +1,4 @@
-import { StatusBar } from "expo-status-bar";
+import React, {useState} from "react";
 import {
   StyleSheet,
   Text,
@@ -10,6 +10,10 @@ import {
 import Header from "./components/Header";
 import Formulario from "./components/Formulario";
 export default function App() {
+  const [ busqueda, guardarBusqueda ] = useState({
+    ciudad: '',
+    pais: ''
+  })
   const ocultarTeclado = ( ) =>{
     Keyboard.dismiss()
   }
@@ -18,7 +22,10 @@ export default function App() {
       <TouchableWithoutFeedback onPress={()=> ocultarTeclado()} >
         <View style={styles.app}>
           <View style={styles.contenido}>
-            <Formulario />
+            <Formulario
+            busqueda={busqueda}
+            guardarBusqueda={guardarBusqueda}
+            />
           </View>
         </View>
       </TouchableWithoutFeedback>
