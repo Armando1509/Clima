@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 
-const Formulario = ({ busqueda, guardarBusqueda }) => {
+const Formulario = ({ busqueda, guardarBusqueda, guardarConsultar }) => {
   const { pais, ciudad } = busqueda;
 
   const [animacionboton] = useState(new Animated.Value(1));
@@ -37,7 +37,7 @@ const Formulario = ({ busqueda, guardarBusqueda }) => {
   const mostrarAlerta = (mensaje) =>{
     Alert.alert(
       'Alerta',
-      mensaje
+      'Error se requieren campos obligatorios',
       [
         {text: 'Aceptar'}
       ]
@@ -46,9 +46,10 @@ const Formulario = ({ busqueda, guardarBusqueda }) => {
 
   const consultarClima = () =>{
     if(pais.trim() === '' || ciudad.trim() === ''){
-      mostrarAlerta('Se requieren ambos campos')
+      mostrarAlerta()
       return
     }
+    guardarConsultar(true)
   }
 
   return (
